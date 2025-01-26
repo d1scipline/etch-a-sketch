@@ -19,13 +19,20 @@ function clear_screen() {
     }
     let new_size = parseInt(prompt("What size do you want your grid to be?"));
     draw_grid(new_size);
+    draw();
+}
+
+function draw() {
+    let gridElements = document.querySelectorAll(".grid-element");
+    for (let i = 0; i < gridElements.length; i++) {
+        gridElements[i].addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = "black";
+        });
+    }
 }
 
 draw_grid(16);
+draw();
 
-let gridElements = document.querySelectorAll(".grid-element");
-for (let i = 0; i < gridElements.length; i++) {
-    gridElements[i].addEventListener("mouseover", (event) => {
-        event.target.style.backgroundColor = "black";
-    });
-}
+let newGridButton = document.querySelector(".new-grid");
+newGridButton.addEventListener("click", clear_screen);
