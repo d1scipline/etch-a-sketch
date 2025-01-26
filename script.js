@@ -13,11 +13,14 @@ function draw_grid(size) {
 }
 
 function clear_screen() {
+    let new_size = 0;
     let gridRow = document.querySelectorAll(".grid-row");
     for (let i = 0; i < gridRow.length; i++) {
         gridRow[i].remove();
     }
-    let new_size = parseInt(prompt("What size do you want your grid to be?"));
+    do {
+        new_size = parseInt(prompt("What size do you want your grid to be? (1-100)"));
+    } while(new_size <= 0 || new_size > 100);
     draw_grid(new_size);
     draw();
 }
