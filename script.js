@@ -12,12 +12,20 @@ function draw_grid(size) {
     }    
 }
 
+function clear_screen() {
+    let gridRow = document.querySelectorAll(".grid-row");
+    for (let i = 0; i < gridRow.length; i++) {
+        gridRow[i].remove();
+    }
+    let new_size = parseInt(prompt("What size do you want your grid to be?"));
+    draw_grid(new_size);
+}
 
 draw_grid(16);
 
 let gridElements = document.querySelectorAll(".grid-element");
 for (let i = 0; i < gridElements.length; i++) {
-    gridElements[i].addEventListener("click", (event) => {
+    gridElements[i].addEventListener("mouseover", (event) => {
         event.target.style.backgroundColor = "black";
     });
 }
