@@ -20,7 +20,7 @@ function clear_screen() {
     }
     do {
         new_size = parseInt(prompt("What size do you want your grid to be? (1-100)"));
-    } while(new_size <= 0 || new_size > 100);
+    } while(new_size <= 0 || new_size > 100 || !new_size);
     draw_grid(new_size);
     draw();
 }
