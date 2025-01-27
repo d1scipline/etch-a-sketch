@@ -59,6 +59,23 @@ function rainbow() {
     }
 }
 
+function opacity() {
+    let gridElements = document.querySelectorAll(".grid-element");
+
+    gridElements.forEach((element) => {
+        element.setAttribute("data-opacity", "0");
+        element.addEventListener("mouseover", (event) => {
+            let el = event.target;
+            let currentOpacity = parseFloat(el.getAttribute("data-opacity"));
+
+            let newOpacity = Math.min(currentOpacity + 0.1, 1);
+
+            el.style.backgroundColor = `rgba(0, 0, 0, ${newOpacity})`;
+            el.setAttribute("data-opacity", newOpacity.toString());
+        });
+    });
+}
+
 draw_grid(16);
 draw();
 
@@ -73,3 +90,6 @@ blackPen.addEventListener("click", draw);
 
 let rainbowPen = document.querySelector(".rainbow");
 rainbowPen.addEventListener("click", rainbow);
+
+let opacityPen = document.querySelector(".opacity");
+opacityPen.addEventListener("click", opacity);
