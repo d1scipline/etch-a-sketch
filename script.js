@@ -1,3 +1,5 @@
+let is_opacity_on = 0;
+
 function draw_grid(size) {
     let container = document.querySelector(".container");
     for (let i = 0; i < size; i++) {
@@ -26,6 +28,7 @@ function clear_screen() {
 }
 
 function draw() {
+    is_opacity_on = 0;
     let gridElements = document.querySelectorAll(".grid-element");
     for (let i = 0; i < gridElements.length; i++) {
         gridElements[i].addEventListener("mouseover", (event) => {
@@ -35,6 +38,7 @@ function draw() {
 }
 
 function erase() {
+    is_opacity_on = 0;
     let gridElements = document.querySelectorAll(".grid-element");
     for (let i = 0; i < gridElements.length; i++) {
         gridElements[i].addEventListener("mouseover", (event) => {
@@ -51,6 +55,7 @@ function rgb() {
 }
 
 function rainbow() {
+    is_opacity_on = 0;
     let gridElements = document.querySelectorAll(".grid-element");
     for (let i = 0; i < gridElements.length; i++) {
         gridElements[i].addEventListener("mouseover", (event) => {
@@ -61,19 +66,22 @@ function rainbow() {
 
 function opacity() {
     let gridElements = document.querySelectorAll(".grid-element");
-
-    gridElements.forEach((element) => {
-        element.setAttribute("data-opacity", "0");
-        element.addEventListener("mouseover", (event) => {
-            let el = event.target;
-            let currentOpacity = parseFloat(el.getAttribute("data-opacity"));
-
-            let newOpacity = Math.min(currentOpacity + 0.1, 1);
-
-            el.style.backgroundColor = `rgba(0, 0, 0, ${newOpacity})`;
-            el.setAttribute("data-opacity", newOpacity.toString());
-        });
-    });
+    if (is_opacity_on == 0) {
+        gridElements.forEach((element) => {
+       
+            element.setAttribute("data-opacity", "0");
+            element.addEventListener("mouseover", (event) => {
+                let el = event.target;
+                let currentOpacity = parseFloat(el.getAttribute("data-opacity"));
+    
+                let newOpacity = Math.min(currentOpacity + 0.1, 1);
+    
+                el.style.backgroundColor = `rgba(0, 0, 0, ${newOpacity})`;
+                el.setAttribute("data-opacity", newOpacity.toString());
+            });
+        });    
+        is_opacity_on = 1;
+    }
 }
 
 draw_grid(16);
