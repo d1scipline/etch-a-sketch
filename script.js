@@ -34,8 +34,42 @@ function draw() {
     }
 }
 
+function erase() {
+    let gridElements = document.querySelectorAll(".grid-element");
+    for (let i = 0; i < gridElements.length; i++) {
+        gridElements[i].addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = "white";
+        });
+    }
+}
+
+function rgb() {
+    r = Math.floor(Math.random()*256);
+    g = Math.floor(Math.random()*256);
+    b = Math.floor(Math.random()*256);
+    return "rgb(" + r + "," + g + "," + b + ")";
+}
+
+function rainbow() {
+    let gridElements = document.querySelectorAll(".grid-element");
+    for (let i = 0; i < gridElements.length; i++) {
+        gridElements[i].addEventListener("mouseover", (event) => {
+            event.target.style.backgroundColor = rgb();
+        });
+    }
+}
+
 draw_grid(16);
 draw();
 
 let newGridButton = document.querySelector(".new-grid");
 newGridButton.addEventListener("click", clear_screen);
+
+let eraser = document.querySelector(".eraser");
+eraser.addEventListener("click", erase);
+
+let blackPen = document.querySelector(".black");
+blackPen.addEventListener("click", draw);
+
+let rainbowPen = document.querySelector(".rainbow");
+rainbowPen.addEventListener("click", rainbow);
